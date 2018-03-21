@@ -9,7 +9,8 @@ import java.util.logging.Logger;
 
 public class VistaServidor extends javax.swing.JFrame implements Runnable{
     protected static reloj rel = new reloj();
-    Thread h1, hserver;
+    static Thread h1;
+    Thread hserver;
     SockServidor ser;
     static String NuevoHora="0";
     static String NuevoMin="0";
@@ -67,7 +68,8 @@ public class VistaServidor extends javax.swing.JFrame implements Runnable{
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        Hora.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        Hora.setFont(new java.awt.Font("Palatino Linotype", 0, 36)); // NOI18N
+        Hora.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         Hora.setText("jLabel1");
         Hora.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -75,6 +77,8 @@ public class VistaServidor extends javax.swing.JFrame implements Runnable{
             }
         });
 
+        ip_puerto.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        ip_puerto.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         ip_puerto.setText("jLabel2");
         ip_puerto.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -87,22 +91,20 @@ public class VistaServidor extends javax.swing.JFrame implements Runnable{
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(119, 119, 119)
-                .addComponent(ip_puerto, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(89, Short.MAX_VALUE)
-                .addComponent(Hora, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(72, 72, 72))
+                .addGap(79, 79, 79)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(Hora, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ip_puerto, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(82, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(71, 71, 71)
+                .addGap(66, 66, 66)
                 .addComponent(Hora, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 109, Short.MAX_VALUE)
-                .addComponent(ip_puerto, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 108, Short.MAX_VALUE)
+                .addComponent(ip_puerto)
+                .addGap(27, 27, 27))
         );
 
         pack();
@@ -114,6 +116,7 @@ public class VistaServidor extends javax.swing.JFrame implements Runnable{
 
     private void HoraMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_HoraMouseClicked
         h1.interrupt();
+        h1 = new Thread(this);
         VistaCambio nuevo = new VistaCambio();
         nuevo.setVisible(true);
     }//GEN-LAST:event_HoraMouseClicked

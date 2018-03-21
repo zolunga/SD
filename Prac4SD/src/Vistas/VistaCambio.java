@@ -93,6 +93,8 @@ public class VistaCambio extends javax.swing.JFrame {
         int M = Integer.parseInt(jmin.getText());
         int S = Integer.parseInt(jseg.getText());
         VistaServidor.rel.modificarHora(H, M, S);
+        VistaServidor.h1.start();
+        this.setVisible(false);
         
 
     }//GEN-LAST:event_jButtonCambiarActionPerformed

@@ -3,6 +3,7 @@ package Sockets;
 
 import Vistas.VistaCliente;
 import java.io.BufferedReader;
+import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -19,7 +20,6 @@ public class SockCliente
     private String HoraServidor;
     DataOutputStream mensaje;
     BufferedReader Mensaje_Servidor;
-    String msj;
     public SockCliente()
     {  
         try 
@@ -27,6 +27,7 @@ public class SockCliente
             sock = new Socket(HOST, PUERTO);
             Mensaje_Servidor = new BufferedReader(new InputStreamReader(sock.getInputStream())); 
             mensaje = new DataOutputStream(sock.getOutputStream());
+            
                      
         } catch (UnknownHostException e) {
             System.out.println("El host no existe o no está activo.");
@@ -42,7 +43,7 @@ public class SockCliente
             sock = new Socket(host, puerto);
             Mensaje_Servidor = new BufferedReader(new InputStreamReader(sock.getInputStream())); 
             mensaje = new DataOutputStream(sock.getOutputStream());
-                     
+            
         } catch (UnknownHostException e) {
             System.out.println("El host no existe o no está activo.");
         } catch (IOException e) {
