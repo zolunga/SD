@@ -53,7 +53,7 @@ public class reloj {
         String sminutos = (minutos < 10) ? "0"+ minutos : "" + minutos;
         String shoras = (horas < 10) ? "0" + horas : "" + horas;
         
-        return shoras + " : " + sminutos + " : " + ssegundos;        
+        return shoras + ":" + sminutos + ":" + ssegundos;        
     }
 
     public int getHoras() {

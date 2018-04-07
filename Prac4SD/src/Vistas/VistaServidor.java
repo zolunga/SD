@@ -8,7 +8,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class VistaServidor extends javax.swing.JFrame implements Runnable{
-    protected static reloj rel = new reloj();
+    public static reloj rel = new reloj();
     static Thread h1;
     Thread hserver;
     SockServidor ser;
