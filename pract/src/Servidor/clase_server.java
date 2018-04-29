@@ -15,9 +15,9 @@ public class clase_server {
     DataInputStream entrada;
     DataInputStream ms;
     DataOutputStream salida;
+    private int JugadorAtendido;
 
     public clase_server() {
-        String msj;
         PUERTO = 3060;
     }
 
@@ -45,13 +45,17 @@ public class clase_server {
             System.out.println("Error de entrada/salida.");
         }
         System.out.println(recibirMSJ());
+        JugadorAtendido = jugador;
         enviarMSJ(Integer.toString(jugador));
 
     }
     public void Lamport()
     {
+        String buffer;
         System.out.println("INICIANDO FUNCION LAMPORT ");
         enviarMSJ("Chambear");
+        buffer = recibirMSJ();
+        System.out.println(JugadorAtendido + ": :" +buffer);
     }
     
     private void enviarMSJ(String buffer)

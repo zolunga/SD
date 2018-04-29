@@ -9,6 +9,7 @@ public class Cliente extends javax.swing.JFrame implements Runnable
     Thread HReloj;
     String numero;
     clase_cliente clien;
+    int interClien = 500;
     public Cliente() {
         initComponents();
         setTitle("Cliente");
@@ -31,7 +32,7 @@ public class Cliente extends javax.swing.JFrame implements Runnable
         {
             rel.pasarTiempo();
             jLabel_Reloj.setText(rel.imprimeHora());
-            try {Thread.sleep(1000);}
+            try {Thread.sleep(interClien);}
             catch (InterruptedException e){}
         }
         
@@ -127,7 +128,10 @@ public class Cliente extends javax.swing.JFrame implements Runnable
     private void jButtonConectarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConectarActionPerformed
         clien = new clase_cliente("192.168.100.8", 3060);
         clien.iniciar();
+        interClien = clien.getIntervalo();
         Hcliente.start();
+        jButtonConectar.setEnabled(false);
+        jButtonConectar.setVisible(false);
     }//GEN-LAST:event_jButtonConectarActionPerformed
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {

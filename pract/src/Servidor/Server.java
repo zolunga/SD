@@ -12,7 +12,7 @@ public class Server extends javax.swing.JFrame implements Runnable
     Thread HServidor;
     Thread HLamport;
     clase_server ser;
-    int Jugador = 0;
+    int Jugador = 1;
     int iniciar_lamp = 0;
     public Server() 
     {
@@ -51,8 +51,6 @@ public class Server extends javax.swing.JFrame implements Runnable
         {
             try {Thread.sleep(1000);}
             catch (InterruptedException e){}
-            System.out.println("Hilo lamport");
-            System.out.println("bandera lamp ="+iniciar_lamp);
             if (iniciar_lamp ==  1) {
                 System.out.println("llamando LAMPORT");
                 ser.Lamport();
