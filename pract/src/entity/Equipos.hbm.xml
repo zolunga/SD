@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Apr 28, 2018 6:01:06 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="entity.Equipos" table="equipos" catalog="practica1_2" optimistic-lock="version">
+        <id name="idEquipos" type="int">
+            <column name="IdEquipos" />
+            <generator class="assigned" />
+        </id>
+        <property name="ip" type="string">
+            <column name="Ip" length="20" />
+        </property>
+        <property name="nombre" type="string">
+            <column name="Nombre" length="50" />
+        </property>
+        <property name="intervalo" type="java.lang.Integer">
+            <column name="Intervalo" />
+        </property>
+        <set name="tiempoequiposesForIdEquipo" table="tiempoequipos" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IdEquipo" />
+            </key>
+            <one-to-many class="entity.Tiempoequipos" />
+        </set>
+        <set name="tiempoequiposesForIdEquipoNext" table="tiempoequipos" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IdEquipoNext" />
+            </key>
+            <one-to-many class="entity.Tiempoequipos" />
+        </set>
+    </class>
+</hibernate-mapping>

@@ -16,9 +16,7 @@ public class VistaServidor extends javax.swing.JFrame implements Runnable{
     static String NuevoMin="0";
     static String NuevoSeg="0";
     public VistaServidor() {
-        initComponents();
-        
-        
+        initComponents();     
         try {
             ser = new SockServidor();
             ser.iniciar();
