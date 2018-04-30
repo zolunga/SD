@@ -6,7 +6,7 @@
     <class name="entity.Lamportcentral" table="lamportcentral" catalog="practica1_2" optimistic-lock="version">
         <id name="idCentral" type="int">
             <column name="IdCentral" />
-            <generator class="assigned" />
+            <generator class="increment" />
         </id>
         <property name="contNuevo" type="java.lang.Integer">
             <column name="ContNuevo" />

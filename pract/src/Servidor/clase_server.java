@@ -1,6 +1,7 @@
 package Servidor;
-
-
+import BaseDatos.BD;
+import Cliente.InfoPC;
+import entity.Equipos;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -16,13 +17,16 @@ public class clase_server {
     DataInputStream ms;
     DataOutputStream salida;
     private int JugadorAtendido;
+    BD con;
 
     public clase_server() {
         PUERTO = 3060;
+        con = new BD();
     }
 
     public void iniciar() 
     {      
+        //con.clear();
         try 
         {
             ss = new ServerSocket(PUERTO);
@@ -33,8 +37,11 @@ public class clase_server {
         }
     }
 
-    public void aceptar(int jugador) 
-    {
+    public InfoPC aceptar(int jugador) 
+    {   
+        InfoPC JugadorNuevo = new InfoPC();
+        String tem;
+        int numero = ((int) (Math.random() * 5) + 1) * 1000;
         try 
         {
             System.out.println("accept");
@@ -44,18 +51,73 @@ public class clase_server {
         } catch (IOException e) {
             System.out.println("Error de entrada/salida.");
         }
-        System.out.println(recibirMSJ());
-        JugadorAtendido = jugador;
+        tem = recibirMSJ(); // recibe IP
+        System.out.println(tem);  
+        
         enviarMSJ(Integer.toString(jugador));
-
+        enviarMSJ(Integer.toString(numero));
+        con.Insertar(tem,Integer.toString(jugador), numero);
+        JugadorNuevo.setNumero(jugador);
+        JugadorNuevo.setEntrada(entrada);
+        JugadorNuevo.setSalida(salida);
+        return JugadorNuevo;
     }
-    public void Lamport()
+    public void Lamport(InfoPC [] equiposC)
     {
-        String buffer;
+        String Horas[] = new String[3];
+        String Tem [][] = new String [3][];
+        int comparador = 0;
+        int ResultadoComparacion = 0;
         System.out.println("INICIANDO FUNCION LAMPORT ");
-        enviarMSJ("Chambear");
-        buffer = recibirMSJ();
-        System.out.println(JugadorAtendido + ": :" +buffer);
+        for (int i = 0; i < 3; i++) 
+        {
+            entrada = equiposC[i].getEntrada();
+            salida = equiposC[i].getSalida();
+            enviarMSJ("Lamport");
+            Horas[i] = recibirMSJ();
+            System.out.println(equiposC[i].getNumero() + ": :" +Horas[i]);
+            Tem[i] = Horas[i].split(":");
+        }
+        if ( (Integer.valueOf(Tem[0][0]) == Integer.valueOf(Tem[1][0])) && (Integer.valueOf(Tem[1][0]) == Integer.valueOf(Tem[2][0])) )
+        {
+            if ( (Integer.valueOf(Tem[0][1]) == Integer.valueOf(Tem[1][1])) && (Integer.valueOf(Tem[1][1]) == Integer.valueOf(Tem[2][1])) )
+            {
+                for (int i = 0; i < 3; i++) 
+                {
+                    if(Integer.valueOf(Tem[i][2]) > comparador) // segundos
+                    {
+                        System.out.println("Comparacion en segundos");
+                        comparador = Integer.valueOf(Tem[i][0]);
+                        ResultadoComparacion = i;
+                    }
+                }
+            }
+            else
+            {
+                for (int i = 0; i < 3; i++) 
+                {
+                    if(Integer.valueOf(Tem[i][1]) > comparador) // minutos
+                    {
+                        System.out.println("Comparacion en Minutos");
+                        comparador = Integer.valueOf(Tem[i][0]);
+                        ResultadoComparacion = i;
+                    }
+                }
+            }            
+        }
+        else
+        {
+            for (int i = 0; i < 3; i++) 
+            {
+                if(Integer.valueOf(Tem[i][0]) > comparador) // horas
+                {
+                    System.out.println("Comparacion en Horas");
+                    comparador = Integer.valueOf(Tem[i][0]);
+                    ResultadoComparacion = i;
+                }
+            }
+        }
+        System.out.println("Resultado Lamport: " + ResultadoComparacion);
     }
     
     private void enviarMSJ(String buffer)

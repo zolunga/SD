@@ -36,6 +36,8 @@ public class clase_cliente
             Mensaje_Servidor = new BufferedReader(new InputStreamReader(sock.getInputStream()));
             salida = new DataOutputStream(sock.getOutputStream());
             IP = InetAddress.getLocalHost().getHostAddress();
+            System.out.println(InetAddress.getLocalHost().getHostAddress());
+            System.out.println(InetAddress.getLocalHost().getHostName());
         } catch (UnknownHostException e) {
             System.out.println("El host no existe o no está activo.");
         } catch (IOException e) {
@@ -55,14 +57,16 @@ public class clase_cliente
         }
     }
 
-    public void iniciar() 
+    public String iniciar() 
     {           
-        
+        IP = "192.168.100.8";
         System.out.println(IP);
-        enviarMSJ("Mi IP es:" + IP);  //Envia IP
+        enviarMSJ(IP);  //Envia IP
         jugador = Integer.parseInt(recibirMSJ());
+        Intervalo = Integer.parseInt(recibirMSJ());
         System.out.println("Numero de jugador: "+jugador); //Recibe Numero asignado por el servidor
-        Intervalo = Intervalo * jugador;
+        System.out.println("Intervalo"+Intervalo);
+        return "Jugador:"+jugador+":"+Intervalo;
     }    
     
     public void EnEspera()
@@ -72,12 +76,12 @@ public class clase_cliente
         {
             temporal = recibirMSJ();
             System.out.println("hilo de espera:"+temporal);
-            if(temporal.equals("Chambear"))
+            if(temporal.equals("Lamport"))
             {   
                 temporal = Cliente.rel.imprimeHora();
                 System.out.println(temporal);
                 enviarMSJ(temporal);
-                System.out.println("WORK");
+                System.out.println("Cambio");
                 break;
             }
         }        

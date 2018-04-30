@@ -1,6 +1,7 @@
 
 package Servidor;
 
+import Cliente.InfoPC;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.logging.Level;
@@ -12,8 +13,9 @@ public class Server extends javax.swing.JFrame implements Runnable
     Thread HServidor;
     Thread HLamport;
     clase_server ser;
-    int Jugador = 1;
+    int Jugador = 0;
     int iniciar_lamp = 0;
+    InfoPC equipos[] = new InfoPC[20];
     public Server() 
     {
         try 
@@ -44,7 +46,9 @@ public class Server extends javax.swing.JFrame implements Runnable
         Thread hilo = Thread.currentThread();
         while (hilo == HServidor)
         {
-            ser.aceptar(Jugador);
+            //equipos[Jugador].setNumero(Jugador);
+            //ser.aceptar(equipos[Jugador]);
+            equipos[Jugador]=ser.aceptar(Jugador);
             Jugador++;
         }
         while (hilo == HLamport)
@@ -53,7 +57,7 @@ public class Server extends javax.swing.JFrame implements Runnable
             catch (InterruptedException e){}
             if (iniciar_lamp ==  1) {
                 System.out.println("llamando LAMPORT");
-                ser.Lamport();
+                ser.Lamport(equipos);
                 iniciar_lamp = 0;
             }
         }

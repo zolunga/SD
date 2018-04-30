@@ -6,7 +6,7 @@
     <class name="entity.Equipos" table="equipos" catalog="practica1_2" optimistic-lock="version">
         <id name="idEquipos" type="int">
             <column name="IdEquipos" />
-            <generator class="assigned" />
+            <generator class="increment" />
         </id>
         <property name="ip" type="string">
             <column name="Ip" length="20" />

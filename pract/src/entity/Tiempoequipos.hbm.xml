@@ -6,7 +6,7 @@
     <class name="entity.Tiempoequipos" table="tiempoequipos" catalog="practica1_2" optimistic-lock="version">
         <id name="idTiempoEq" type="int">
             <column name="IdTiempoEq" />
-            <generator class="assigned" />
+            <generator class="increment" />
         </id>
         <many-to-one name="equiposByIdEquipo" class="entity.Equipos" fetch="select">
             <column name="IdEquipo" />

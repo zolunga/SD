@@ -33,7 +33,12 @@ public class Equipos  implements java.io.Serializable {
        this.tiempoequiposesForIdEquipo = tiempoequiposesForIdEquipo;
        this.tiempoequiposesForIdEquipoNext = tiempoequiposesForIdEquipoNext;
     }
-   
+    public Equipos (String ip, String nombre, Integer intervalo)
+    {
+       this.ip = ip;
+       this.nombre = nombre;
+       this.intervalo = intervalo; 
+    }
     public int getIdEquipos() {
         return this.idEquipos;
     }
