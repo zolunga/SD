@@ -8,6 +8,7 @@ public class Cliente extends javax.swing.JFrame implements Runnable
     Thread Hcliente;
     Thread HReloj;
     String numero;
+    String [] tem;
     clase_cliente clien;
     int interClien = 500;
     public Cliente() {

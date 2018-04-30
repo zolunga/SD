@@ -41,7 +41,7 @@ public class clase_server {
     {   
         InfoPC JugadorNuevo = new InfoPC();
         String tem;
-        int numero = ((int) (Math.random() * 5) + 1) * 1000;
+        int numero = ((int) (Math.random() * 10) + 1) * 500;
         try 
         {
             System.out.println("accept");
@@ -87,7 +87,8 @@ public class clase_server {
                     if(Integer.valueOf(Tem[i][2]) > comparador) // segundos
                     {
                         System.out.println("Comparacion en segundos");
-                        comparador = Integer.valueOf(Tem[i][0]);
+                        System.out.println(Integer.valueOf(Tem[i][2]) +">"+comparador);
+                        comparador = Integer.valueOf(Tem[i][2]);
                         ResultadoComparacion = i;
                     }
                 }
@@ -99,7 +100,8 @@ public class clase_server {
                     if(Integer.valueOf(Tem[i][1]) > comparador) // minutos
                     {
                         System.out.println("Comparacion en Minutos");
-                        comparador = Integer.valueOf(Tem[i][0]);
+                        System.out.println(Integer.valueOf(Tem[i][1]) +">"+comparador);
+                        comparador = Integer.valueOf(Tem[i][1]);
                         ResultadoComparacion = i;
                     }
                 }
@@ -112,10 +114,17 @@ public class clase_server {
                 if(Integer.valueOf(Tem[i][0]) > comparador) // horas
                 {
                     System.out.println("Comparacion en Horas");
+                    System.out.println(Integer.valueOf(Tem[i][0]) +">"+comparador);
                     comparador = Integer.valueOf(Tem[i][0]);
                     ResultadoComparacion = i;
                 }
             }
+        }
+        for (int i = 0; i < 3; i++) 
+        {
+            entrada = equiposC[i].getEntrada();
+            salida = equiposC[i].getSalida();
+            enviarMSJ(Horas[ResultadoComparacion]);                         
         }
         System.out.println("Resultado Lamport: " + ResultadoComparacion);
     }

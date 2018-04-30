@@ -10,6 +10,7 @@ import java.io.PrintStream;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.net.UnknownHostException;
+import Cliente.Cliente; 
 
 public class clase_cliente 
 {
@@ -20,20 +21,15 @@ public class clase_cliente
     private String IP;
     private int jugador;
     private int Intervalo = 500;
-//    private Reloj.reloj RelojOperaciones;
-
-    
-    
+    private String NuevaHora;
     DataOutputStream salida; // enviar mensajes
     DataInputStream Entrada; //recibir mensajes
-    BufferedReader Mensaje_Servidor;
-    
-    String [] horaMod;
+
+
 
     public clase_cliente() {
         try {
             sock = new Socket(HOST, PUERTO);
-            Mensaje_Servidor = new BufferedReader(new InputStreamReader(sock.getInputStream()));
             salida = new DataOutputStream(sock.getOutputStream());
             IP = InetAddress.getLocalHost().getHostAddress();
             System.out.println(InetAddress.getLocalHost().getHostAddress());
@@ -66,12 +62,13 @@ public class clase_cliente
         Intervalo = Integer.parseInt(recibirMSJ());
         System.out.println("Numero de jugador: "+jugador); //Recibe Numero asignado por el servidor
         System.out.println("Intervalo"+Intervalo);
-        return "Jugador:"+jugador+":"+Intervalo;
+        return "Jugador"+jugador+":"+Intervalo;
     }    
     
     public void EnEspera()
     {
-        String temporal;     
+        String temporal;
+        String division [];
         while (true)
         {
             temporal = recibirMSJ();
@@ -81,10 +78,16 @@ public class clase_cliente
                 temporal = Cliente.rel.imprimeHora();
                 System.out.println(temporal);
                 enviarMSJ(temporal);
-                System.out.println("Cambio");
-                break;
+                temporal = recibirMSJ();
+                division = temporal.split(":");
+                System.out.println("Cambio a:" + temporal);
+                
+                Cliente.rel.modificarHora(Integer.valueOf(division[0]), Integer.valueOf(division[1]), Integer.valueOf(division[2]));
+                //Cliente.rel.modificarHora(1, 1, 1);
+                
             }
-        }        
+        }
+
     }
     
     private void enviarMSJ(String buffer)
@@ -126,4 +129,13 @@ public class clase_cliente
     public void setIntervalo(int Intervalo) {
         this.Intervalo = Intervalo;
     }
+    
+    public String getNuevaHora() {
+        return NuevaHora;
+    }
+
+    public void setNuevaHora(String NuevaHora) {
+        this.NuevaHora = NuevaHora;
+    }
+
 }

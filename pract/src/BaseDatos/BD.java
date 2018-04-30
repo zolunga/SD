@@ -3,6 +3,7 @@ package BaseDatos;
 
 import entity.Equipos;
 import entity.HibernateUtil;
+import entity.Lamportcentral;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -31,6 +32,22 @@ public class BD {
         Transaction t = session.beginTransaction();
         session.save(x);
         t.commit();
+    }
+    
+    public void LamportN()
+    {
+        session = HibernateUtil.getSessionFactory().openSession();
+        Lamportcentral x = new Lamportcentral();
+        x.setContLocal(1);
+        x.setContNuevo(1);
+        Transaction t = session.beginTransaction();
+        session.save(x);
+        t.commit();
+    }
+    
+    public void AgregarTiempos()
+    {
+        
     }
     public void limpiar()
     {
