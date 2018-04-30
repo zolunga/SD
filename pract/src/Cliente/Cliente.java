@@ -67,7 +67,6 @@ public class Cliente extends javax.swing.JFrame implements Runnable
         });
 
         jLabel_jugador.setFont(new java.awt.Font("Trebuchet MS", 0, 24)); // NOI18N
-        jLabel_jugador.setText("jLabel1");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

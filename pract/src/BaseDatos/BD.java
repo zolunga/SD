@@ -4,6 +4,7 @@ package BaseDatos;
 import entity.Equipos;
 import entity.HibernateUtil;
 import entity.Lamportcentral;
+import entity.Tiempoequipos;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -43,10 +44,14 @@ public class BD {
         Transaction t = session.beginTransaction();
         session.save(x);
         t.commit();
+        
     }
     
     public void AgregarTiempos()
     {
+        Lamportcentral l = new Lamportcentral();
+        Tiempoequipos x = new Tiempoequipos();
+        
         
     }
     public void limpiar()
