@@ -26,7 +26,8 @@ public class clase_server {
 
     public void iniciar() 
     {      
-        //con.clear();
+        //con.limpiar();
+        con.LamportN();
         try 
         {
             ss = new ServerSocket(PUERTO);
@@ -77,6 +78,10 @@ public class clase_server {
             Horas[i] = recibirMSJ();
             System.out.println(equiposC[i].getNumero() + ": :" +Horas[i]);
             Tem[i] = Horas[i].split(":");
+            if(i < 2)
+                con.AgregarTiempos(i+1, i+2,Horas[i], "jugador"+i );
+            else
+                con.AgregarTiempos(i+1, 1,Horas[i], "jugador"+i );
         }
         if ( (Integer.valueOf(Tem[0][0]) == Integer.valueOf(Tem[1][0])) && (Integer.valueOf(Tem[1][0]) == Integer.valueOf(Tem[2][0])) )
         {
@@ -127,6 +132,7 @@ public class clase_server {
             enviarMSJ(Horas[ResultadoComparacion]);                         
         }
         System.out.println("Resultado Lamport: " + ResultadoComparacion);
+    
     }
     
     private void enviarMSJ(String buffer)

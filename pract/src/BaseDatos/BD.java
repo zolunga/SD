@@ -5,6 +5,7 @@ import entity.Equipos;
 import entity.HibernateUtil;
 import entity.Lamportcentral;
 import entity.Tiempoequipos;
+import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -38,24 +39,44 @@ public class BD {
     public void LamportN()
     {
         session = HibernateUtil.getSessionFactory().openSession();
-        Lamportcentral x = new Lamportcentral();
-        x.setContLocal(1);
-        x.setContNuevo(1);
-        Transaction t = session.beginTransaction();
-        session.save(x);
-        t.commit();
-        
+        Lamportcentral x;
+        x = (Lamportcentral) session.get(Lamportcentral.class, 1);
+        if (x == null) 
+        {
+            x = new Lamportcentral();
+            x.setIdCentral(1);
+            x.setContLocal(1);
+            x.setContNuevo(1);
+            Transaction t = session.beginTransaction();
+            session.save(x);
+            t.commit();
+        }     
     }
     
-    public void AgregarTiempos()
+    public void AgregarTiempos( int Actual, int siguiente, String Mensaje, String equipo)
     {
-        Lamportcentral l = new Lamportcentral();
-        Tiempoequipos x = new Tiempoequipos();
-        
+        Lamportcentral x = (Lamportcentral) session.get(Lamportcentral.class, 1);
+        Equipos ObActual = (Equipos) session.get(Equipos.class, Actual);
+        Equipos ObSiguiente = (Equipos) session.get(Equipos.class, siguiente);
+        Tiempoequipos tiempo = new Tiempoequipos(ObActual, ObSiguiente, x, equipo, Mensaje);
+        Transaction t = session.beginTransaction();
+        session.save(tiempo);
+        t.commit();       
         
     }
     public void limpiar()
     {
-        
+        session = HibernateUtil.getSessionFactory().openSession();
+        String hql = String.format("delete from equipos");
+        Query query = session.createQuery(hql);
+        query.executeUpdate();
+    }
+    
+    public List lista ()
+    {
+        session = HibernateUtil.getSessionFactory().openSession();
+        Query consulta = session.createQuery("from Tiempoequipos");
+        List lista = consulta.list();   
+        return lista;
     }
 }

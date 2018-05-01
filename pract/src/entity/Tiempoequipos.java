@@ -31,6 +31,13 @@ public class Tiempoequipos  implements java.io.Serializable {
        this.cequipo = cequipo;
        this.cmensaje = cmensaje;
     }
+    public Tiempoequipos(Equipos equiposByIdEquipo, Equipos equiposByIdEquipoNext, Lamportcentral lamportcentral, String cequipo, String cmensaje) {
+       this.equiposByIdEquipo = equiposByIdEquipo;
+       this.equiposByIdEquipoNext = equiposByIdEquipoNext;
+       this.lamportcentral = lamportcentral;
+       this.cequipo = cequipo;
+       this.cmensaje = cmensaje;
+    }
    
     public int getIdTiempoEq() {
         return this.idTiempoEq;
