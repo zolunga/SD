@@ -59,7 +59,7 @@ public class Cliente extends javax.swing.JFrame implements Runnable
 
         jLabel3.setText("Puerto");
 
-        jButtonConectar.setText("jButton1");
+        jButtonConectar.setText("Conectar");
         jButtonConectar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonConectarActionPerformed(evt);
