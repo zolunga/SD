@@ -46,8 +46,8 @@ Contributor(s):
     <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/practica1_2?zeroDateTimeBehavior=convertToNull</property>
     <property name="hibernate.connection.username">root</property>
     <property name="hibernate.connection.password">1234</property>
-    <mapping resource="entity/Tiempoequipos.hbm.xml"/>
-    <mapping resource="entity/Lamportcentral.hbm.xml"/>
     <mapping resource="entity/Equipos.hbm.xml"/>
+    <mapping resource="entity/TiempoEquipos.hbm.xml"/>
+    <mapping resource="entity/LamportCentral.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>

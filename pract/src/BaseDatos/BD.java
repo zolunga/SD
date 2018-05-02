@@ -3,8 +3,8 @@ package BaseDatos;
 
 import entity.Equipos;
 import entity.HibernateUtil;
-import entity.Lamportcentral;
-import entity.Tiempoequipos;
+import entity.LamportCentral;
+import entity.TiempoEquipos;
 import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -39,11 +39,11 @@ public class BD {
     public void LamportN()
     {
         session = HibernateUtil.getSessionFactory().openSession();
-        Lamportcentral x;
-        x = (Lamportcentral) session.get(Lamportcentral.class, 1);
+        LamportCentral x;
+        x = (LamportCentral) session.get(LamportCentral.class, 1);
         if (x == null) 
         {
-            x = new Lamportcentral();
+            x = new LamportCentral();
             x.setIdCentral(1);
             x.setContLocal(1);
             x.setContNuevo(1);
@@ -55,10 +55,10 @@ public class BD {
     
     public void AgregarTiempos( int Actual, int siguiente, String Mensaje, String equipo)
     {
-        Lamportcentral x = (Lamportcentral) session.get(Lamportcentral.class, 1);
+        LamportCentral x = (LamportCentral) session.get(LamportCentral.class, 1);
         Equipos ObActual = (Equipos) session.get(Equipos.class, Actual);
         Equipos ObSiguiente = (Equipos) session.get(Equipos.class, siguiente);
-        Tiempoequipos tiempo = new Tiempoequipos(ObActual, ObSiguiente, x, equipo, Mensaje);
+        TiempoEquipos tiempo = new TiempoEquipos(ObActual, ObSiguiente, x, equipo, Mensaje);
         Transaction t = session.beginTransaction();
         session.save(tiempo);
         t.commit();       

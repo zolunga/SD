@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated Apr 28, 2018 6:01:06 PM by Hibernate Tools 4.3.1 -->
+<!-- Generated 2/05/2018 02:24:44 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-    <class name="entity.Equipos" table="equipos" catalog="practica1_2" optimistic-lock="version">
+    <class name="entity.Equipos" table="Equipos" catalog="practica1_2" optimistic-lock="version">
         <id name="idEquipos" type="int">
             <column name="IdEquipos" />
             <generator class="increment" />
@@ -17,17 +17,17 @@
         <property name="intervalo" type="java.lang.Integer">
             <column name="Intervalo" />
         </property>
-        <set name="tiempoequiposesForIdEquipo" table="tiempoequipos" inverse="true" lazy="true" fetch="select">
+        <set name="tiempoEquiposesForIdEquipo" table="TiempoEquipos" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="IdEquipo" />
             </key>
-            <one-to-many class="entity.Tiempoequipos" />
+            <one-to-many class="entity.TiempoEquipos" />
         </set>
-        <set name="tiempoequiposesForIdEquipoNext" table="tiempoequipos" inverse="true" lazy="true" fetch="select">
+        <set name="tiempoEquiposesForIdEquipoNext" table="TiempoEquipos" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="IdEquipoNext" />
             </key>
-            <one-to-many class="entity.Tiempoequipos" />
+            <one-to-many class="entity.TiempoEquipos" />
         </set>
     </class>
 </hibernate-mapping>

@@ -3,7 +3,7 @@ package Servidor;
 
 import BaseDatos.BD;
 import Cliente.InfoPC;
-import entity.Tiempoequipos;
+import entity.TiempoEquipos;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.List;
@@ -156,7 +156,7 @@ public class Server extends javax.swing.JFrame implements Runnable
         for (i = Resultado.size()-3, j = 0; i < Resultado.size(); i++, j++) 
         {
             tem[j] = "";
-            tem[j] += (((Tiempoequipos)Resultado.get(i)).getCequipo()) +" Tiempo:"+(((Tiempoequipos)Resultado.get(i)).getCmensaje()) + " Siguiente:" + (((Tiempoequipos)Resultado.get(i)).getEquiposByIdEquipoNext().getNombre());          
+            tem[j] += (((TiempoEquipos)Resultado.get(i)).getCequipo()) +" Tiempo:"+(((TiempoEquipos)Resultado.get(i)).getCmensaje()) + " Siguiente:" + (((TiempoEquipos)Resultado.get(i)).getEquiposByIdEquipoNext().getNombre());          
         }
         jLabel_res.setText(tem[0]);
         jLabel_res2.setText(tem[1]);

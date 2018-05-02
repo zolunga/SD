@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated Apr 28, 2018 6:01:06 PM by Hibernate Tools 4.3.1 -->
+<!-- Generated 2/05/2018 02:24:44 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-    <class name="entity.Tiempoequipos" table="tiempoequipos" catalog="practica1_2" optimistic-lock="version">
+    <class name="entity.TiempoEquipos" table="TiempoEquipos" catalog="practica1_2" optimistic-lock="version">
         <id name="idTiempoEq" type="int">
             <column name="IdTiempoEq" />
             <generator class="increment" />
@@ -14,7 +14,7 @@
         <many-to-one name="equiposByIdEquipoNext" class="entity.Equipos" fetch="select">
             <column name="IdEquipoNext" />
         </many-to-one>
-        <many-to-one name="lamportcentral" class="entity.Lamportcentral" fetch="select">
+        <many-to-one name="lamportCentral" class="entity.LamportCentral" fetch="select">
             <column name="IdCentral" />
         </many-to-one>
         <property name="cequipo" type="string">

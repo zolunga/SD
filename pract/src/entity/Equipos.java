@@ -1,5 +1,5 @@
 package entity;
-// Generated Apr 28, 2018 6:01:06 PM by Hibernate Tools 4.3.1
+// Generated 2/05/2018 02:24:42 PM by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -15,8 +15,8 @@ public class Equipos  implements java.io.Serializable {
      private String ip;
      private String nombre;
      private Integer intervalo;
-     private Set tiempoequiposesForIdEquipo = new HashSet(0);
-     private Set tiempoequiposesForIdEquipoNext = new HashSet(0);
+     private Set tiempoEquiposesForIdEquipo = new HashSet(0);
+     private Set tiempoEquiposesForIdEquipoNext = new HashSet(0);
 
     public Equipos() {
     }
@@ -25,20 +25,15 @@ public class Equipos  implements java.io.Serializable {
     public Equipos(int idEquipos) {
         this.idEquipos = idEquipos;
     }
-    public Equipos(int idEquipos, String ip, String nombre, Integer intervalo, Set tiempoequiposesForIdEquipo, Set tiempoequiposesForIdEquipoNext) {
+    public Equipos(int idEquipos, String ip, String nombre, Integer intervalo, Set tiempoEquiposesForIdEquipo, Set tiempoEquiposesForIdEquipoNext) {
        this.idEquipos = idEquipos;
        this.ip = ip;
        this.nombre = nombre;
        this.intervalo = intervalo;
-       this.tiempoequiposesForIdEquipo = tiempoequiposesForIdEquipo;
-       this.tiempoequiposesForIdEquipoNext = tiempoequiposesForIdEquipoNext;
+       this.tiempoEquiposesForIdEquipo = tiempoEquiposesForIdEquipo;
+       this.tiempoEquiposesForIdEquipoNext = tiempoEquiposesForIdEquipoNext;
     }
-    public Equipos (String ip, String nombre, Integer intervalo)
-    {
-       this.ip = ip;
-       this.nombre = nombre;
-       this.intervalo = intervalo; 
-    }
+   
     public int getIdEquipos() {
         return this.idEquipos;
     }
@@ -67,19 +62,19 @@ public class Equipos  implements java.io.Serializable {
     public void setIntervalo(Integer intervalo) {
         this.intervalo = intervalo;
     }
-    public Set getTiempoequiposesForIdEquipo() {
-        return this.tiempoequiposesForIdEquipo;
+    public Set getTiempoEquiposesForIdEquipo() {
+        return this.tiempoEquiposesForIdEquipo;
     }
     
-    public void setTiempoequiposesForIdEquipo(Set tiempoequiposesForIdEquipo) {
-        this.tiempoequiposesForIdEquipo = tiempoequiposesForIdEquipo;
+    public void setTiempoEquiposesForIdEquipo(Set tiempoEquiposesForIdEquipo) {
+        this.tiempoEquiposesForIdEquipo = tiempoEquiposesForIdEquipo;
     }
-    public Set getTiempoequiposesForIdEquipoNext() {
-        return this.tiempoequiposesForIdEquipoNext;
+    public Set getTiempoEquiposesForIdEquipoNext() {
+        return this.tiempoEquiposesForIdEquipoNext;
     }
     
-    public void setTiempoequiposesForIdEquipoNext(Set tiempoequiposesForIdEquipoNext) {
-        this.tiempoequiposesForIdEquipoNext = tiempoequiposesForIdEquipoNext;
+    public void setTiempoEquiposesForIdEquipoNext(Set tiempoEquiposesForIdEquipoNext) {
+        this.tiempoEquiposesForIdEquipoNext = tiempoEquiposesForIdEquipoNext;
     }
 
 
