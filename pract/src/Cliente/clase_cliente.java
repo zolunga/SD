@@ -55,7 +55,7 @@ public class clase_cliente
 
     public String iniciar() 
     {           
-        IP = "192.168.100.8";
+        IP = HOST;
         System.out.println(IP);
         enviarMSJ(IP);  //Envia IP
         jugador = Integer.parseInt(recibirMSJ());
@@ -69,6 +69,7 @@ public class clase_cliente
     {
         String temporal;
         String division [];
+        int segundos=0;
         while (true)
         {
             temporal = recibirMSJ();
@@ -79,15 +80,13 @@ public class clase_cliente
                 System.out.println(temporal);
                 enviarMSJ(temporal);
                 temporal = recibirMSJ();
-                division = temporal.split(":");
-                System.out.println("Cambio a:" + temporal);
-                
-                Cliente.rel.modificarHora(Integer.valueOf(division[0]), Integer.valueOf(division[1]), Integer.valueOf(division[2]));
-                //Cliente.rel.modificarHora(1, 1, 1);
-                
+                segundos = Integer.valueOf(temporal);
+                for (int i = 0; i < segundos; i++) {
+                    Cliente.rel.pasarTiempo();
+                }
+                System.out.println("Cambio +" + temporal);               
             }
         }
-
     }
     
     private void enviarMSJ(String buffer)

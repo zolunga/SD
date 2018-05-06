@@ -67,7 +67,7 @@ public class BD {
     public void limpiar()
     {
         session = HibernateUtil.getSessionFactory().openSession();
-        String hql = String.format("delete from equipos");
+        String hql = String.format("delete from Equipos");
         Query query = session.createQuery(hql);
         query.executeUpdate();
     }
@@ -75,7 +75,7 @@ public class BD {
     public List lista ()
     {
         session = HibernateUtil.getSessionFactory().openSession();
-        Query consulta = session.createQuery("from Tiempoequipos");
+        Query consulta = session.createQuery("from TiempoEquipos");
         List lista = consulta.list();   
         return lista;
     }

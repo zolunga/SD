@@ -16,6 +16,7 @@ public class clase_server {
     DataInputStream entrada;
     DataInputStream ms;
     DataOutputStream salida;
+    String Tem [][] = new String [3][];
     private int JugadorAtendido;
     BD con;
 
@@ -65,9 +66,12 @@ public class clase_server {
     }
     public void Lamport(InfoPC [] equiposC)
     {
-        String Horas[] = new String[3];
-        String Tem [][] = new String [3][];
+        String Horas[] = new String[3]; // contiene la hora compleata de cada user
+        int Hsegundos = 0;
+        int Msegundos = 0;
+        int segundos = 0;
         int comparador = 0;
+        
         int ResultadoComparacion = 0;
         System.out.println("INICIANDO FUNCION LAMPORT ");
         for (int i = 0; i < 3; i++) 
@@ -86,50 +90,23 @@ public class clase_server {
         if ( (Integer.valueOf(Tem[0][0]) == Integer.valueOf(Tem[1][0])) && (Integer.valueOf(Tem[1][0]) == Integer.valueOf(Tem[2][0])) )
         {
             if ( (Integer.valueOf(Tem[0][1]) == Integer.valueOf(Tem[1][1])) && (Integer.valueOf(Tem[1][1]) == Integer.valueOf(Tem[2][1])) )
-            {
-                for (int i = 0; i < 3; i++) 
-                {
-                    if(Integer.valueOf(Tem[i][2]) > comparador) // segundos
-                    {
-                        System.out.println("Comparacion en segundos");
-                        System.out.println(Integer.valueOf(Tem[i][2]) +">"+comparador);
-                        comparador = Integer.valueOf(Tem[i][2]);
-                        ResultadoComparacion = i;
-                    }
-                }
-            }
+                ResultadoComparacion = corredor(2);
             else
-            {
-                for (int i = 0; i < 3; i++) 
-                {
-                    if(Integer.valueOf(Tem[i][1]) > comparador) // minutos
-                    {
-                        System.out.println("Comparacion en Minutos");
-                        System.out.println(Integer.valueOf(Tem[i][1]) +">"+comparador);
-                        comparador = Integer.valueOf(Tem[i][1]);
-                        ResultadoComparacion = i;
-                    }
-                }
-            }            
+                ResultadoComparacion = corredor(1);            
         }
         else
+            ResultadoComparacion = corredor(0);
+        
+        for (int i = 0; i < 3; i++) // envio de respuestas
         {
-            for (int i = 0; i < 3; i++) 
-            {
-                if(Integer.valueOf(Tem[i][0]) > comparador) // horas
-                {
-                    System.out.println("Comparacion en Horas");
-                    System.out.println(Integer.valueOf(Tem[i][0]) +">"+comparador);
-                    comparador = Integer.valueOf(Tem[i][0]);
-                    ResultadoComparacion = i;
-                }
-            }
-        }
-        for (int i = 0; i < 3; i++) 
-        {
+            Hsegundos = (Integer.valueOf(Tem[ResultadoComparacion][0]) - Integer.valueOf(Tem[i][0])) * 3600;
+            Msegundos = (Integer.valueOf(Tem[ResultadoComparacion][1]) - Integer.valueOf(Tem[i][1])) * 60;
+            segundos = Integer.valueOf(Tem[ResultadoComparacion][2]) - Integer.valueOf(Tem[i][2]);
+            segundos = segundos + Msegundos + Hsegundos + 1;
+            System.out.println("jugador 1 +"+segundos);
             entrada = equiposC[i].getEntrada();
             salida = equiposC[i].getSalida();
-            enviarMSJ(Horas[ResultadoComparacion]);                         
+            enviarMSJ(String.valueOf(segundos));                         
         }
         System.out.println("Resultado Lamport: " + ResultadoComparacion);
     
@@ -157,6 +134,24 @@ public class clase_server {
             System.out.println("Error de entrada/salida.");
         }
         return buffer;
+    }
+    
+    private int corredor(int indice)
+    {
+        int comparador = 0;
+        int ResultadoComparacion = 0;
+        for (int i = 0; i < 3; i++) 
+        {
+            if(Integer.valueOf(Tem[i][indice]) > comparador) // segundos
+            {
+                System.out.println("Comparacion en segundos");
+                System.out.println(Integer.valueOf(Tem[i][indice]) +">"+comparador);
+                comparador = Integer.valueOf(Tem[i][indice]);
+                ResultadoComparacion = i;
+            }
+        }
+        
+        return ResultadoComparacion;
     }
     
     public int getPUERTO() {

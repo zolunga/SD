@@ -123,9 +123,9 @@ public class Cliente extends javax.swing.JFrame implements Runnable
 
     private void jButtonConectarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConectarActionPerformed
         if(jTextField_IP.getText() == null)
-            clien = new clase_cliente("192.168.100.8", 3060);
+            clien = new clase_cliente("localhost", 3060);
         else
-            clien = new clase_cliente(jTextField_IP.getText(),3060);
+            clien = new clase_cliente(jTextField_IP.getText(),Integer.parseInt(jTextField_Puerto.getText().toString()));
         jLabel_jugador.setText(clien.iniciar());
         interClien = clien.getIntervalo();
         Hcliente.start();
