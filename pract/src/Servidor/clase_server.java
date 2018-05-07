@@ -169,4 +169,18 @@ public class clase_server {
     public void setHOST(String HOST) {
         this.HOST = HOST;
     }
+    
+    public void comparador(int indiceA, int indiceB)
+    {
+        int comparador = 0;
+        if(Integer.valueOf(Tem[i][0]) > comparador) // horas
+        {
+            System.out.println("Comparacion en Horas");
+            System.out.println(Integer.valueOf(Tem[i][0]) +">"+comparador);
+            comparador = Integer.valueOf(Tem[i][0]);
+            ResultadoComparacion = i;
+        }
+        
+    }
 }
+
