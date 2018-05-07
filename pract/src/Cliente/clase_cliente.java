@@ -15,8 +15,8 @@ import Cliente.Cliente;
 public class clase_cliente 
 {
  private Socket sock;
-    private static String HOST = "localhost";
-    private static int PUERTO = 3060;
+    private static String HOST = "10.100.72.14";
+    private static int PUERTO = 8691;
     private String HoraServidor;
     private String IP;
     private int jugador;
@@ -43,6 +43,7 @@ public class clase_cliente
 
     public clase_cliente(String host, int puerto) {
         try {
+            System.out.println(host + ": "+ puerto);
             sock = new Socket(host, puerto);
             Entrada = new DataInputStream(sock.getInputStream());
             salida = new DataOutputStream(sock.getOutputStream());          
